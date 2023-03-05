@@ -1,3 +1,31 @@
+## Preparing a development environment
+This repo provides a docker compose file to initialize a local database a redis cache and a pgadmin containers to ease development.
+ - Setup environment variables
+```
+cp .env.template .env
+```
+ - Set the following variables into .env file
+ ````
+DATABASE_URL="postgres://postgres:postgres@localhost/medusa-store" 
+REDIS_URL="redis://localhost:6379"
+```
+ - Run docker compose to setup database dependencies
+```
+docker compose up -d postgres redis pgadmin
+```
+ - Run medusa migrations. Make sure medusa-cli is installed (see medusa cli documentation for instructions). Make sure DATABASE_URL and REDIS_URL is set in you shell
+```
+export DATABASE_URL=...
+export REDIS_URL=...
+medusa migrations run
+medusa seed -f ./data/seed.json
+```
+Environment is set. You can now develop and test code running 
+````
+medusa develop
+curl -X GET localhost:9000/store/products
+```
+
 <p align="center">
   <a href="https://www.medusa-commerce.com">
     <img alt="Medusa" src="https://i.imgur.com/USubGVY.png" width="100" />
