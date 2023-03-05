@@ -5,12 +5,11 @@ services:
       context: .
       dockerfile: Dockerfile
     image: backend:starter
-    container_name: medusa-server-default
     depends_on:
       - postgres
       - redis
     environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-store
       REDIS_URL: redis://redis
       NODE_ENV: development
       JWT_SECRET: something
@@ -29,12 +28,22 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: medusa-docker
+      POSTGRES_DB: medusa-store
 
   redis:
     image: redis
     expose:
       - 6379
+    ports:
+      - "6379:6379"
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
 
 volumes:
   node_modules:
