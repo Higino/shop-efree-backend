@@ -5,7 +5,7 @@ This repo provides a docker compose file to initialize a local database a redis 
 cp .env.template .env
 ```
  - Set the following variables into .env file
- ````
+ ```
 DATABASE_URL="postgres://postgres:postgres@localhost/medusa-store" 
 REDIS_URL="redis://localhost:6379"
 ```
