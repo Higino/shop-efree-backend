@@ -21,7 +21,7 @@ medusa migrations run
 medusa seed -f ./data/seed.json
 ```
 Environment is set. You can now develop and test code running 
-````
+```
 medusa develop
 curl -X GET localhost:9000/store/products
 ```
