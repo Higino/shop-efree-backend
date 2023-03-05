@@ -6,8 +6,10 @@ services:
       dockerfile: Dockerfile
     image: backend:starter
     depends_on:
-      - postgres
-      - redis
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-store
       REDIS_URL: redis://redis
@@ -17,6 +19,10 @@ services:
       PORT: 9000
     ports:
       - "9000:9000"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
     volumes:
       - .:/app/medusa
       - node_modules:/app/medusa/node_modules
@@ -32,6 +38,10 @@ services:
 
   redis:
     image: redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping"]
+      interval: 5s
+      retries: 10
     expose:
       - 6379
     ports:
@@ -40,10 +50,23 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
+
+  admin:
+    image: ginolocoop/medusa-admin:local
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-store
+    extra_hosts:
+      - "localhost:127.0.0.1"
+    ports:
+      - "7000:7000"
+  storefront:
+    image: ginolocoop/medusa-storefront:local
+    ports:
+      - "8000:8000"
 
 volumes:
   node_modules:

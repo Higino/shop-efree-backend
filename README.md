@@ -86,16 +86,7 @@ medusa seed -f ./data/seed.json
 
 This command seeds your database with some sample data to get you started, including a store, an administrator account, a region and a product with variants. What the data looks like precisely you can see in the `./data/seed.json` file.
 
-## Setting up your store with Docker
-
-- Install the Medusa CLI
-  ```
-  npm install -g @medusajs/medusa-cli
-  ```
-- Create a new Medusa project
-  ```
-  medusa new my-medusa-store
-  ```
+## Seting up datasources
 - Update project config in `medusa-config.js`:
 
   ```
@@ -110,13 +101,18 @@ This command seeds your database with some sample data to get you started, inclu
     plugins,
   };
   ```
+## Setting up your store with an admin and storefront samples
+- Install the Medusa CLI
+  ```
+  npm install -g @medusajs/medusa-cli
+  ```
 
 - Run your project
 
   When running your project the first time `docker compose` should be run with the `build` flag to build your container locally:
 
   ```
-  docker-compose up --build
+  docker-compose up --build backend
   ```
 
   When running your project subsequent times you can run docker compose with no flags to spin up your local environment in seconds:
@@ -126,6 +122,11 @@ This command seeds your database with some sample data to get you started, inclu
   ```
 
 Your local Medusa server is now running on port **9000**.
+ 
+ - Spin on an admin and stoprefront samples for your server
+ ```
+ docker compose up admin storefront
+ ```
 
 ### Seeding your Medusa store with Docker
 
