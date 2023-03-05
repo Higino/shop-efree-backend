@@ -1,41 +1,13 @@
-## Preparing a development environment
-This repo provides a docker compose file to initialize a local database a redis cache and a pgadmin containers to ease development.
- - Setup environment variables
-```
-cp .env.template .env
-```
- - Set the following variables into .env file
- ```
-DATABASE_URL="postgres://postgres:postgres@localhost/medusa-store" 
-REDIS_URL="redis://localhost:6379"
-```
- - Run docker compose to setup database dependencies
-```
-docker compose up -d postgres redis pgadmin
-```
- - Run medusa migrations. Make sure medusa-cli is installed (see medusa cli documentation for instructions). Make sure DATABASE_URL and REDIS_URL is set in you shell
-```
-export DATABASE_URL=...
-export REDIS_URL=...
-medusa migrations run
-medusa seed -f ./data/seed.json
-```
-Environment is set. You can now develop and test code running 
-```
-medusa develop
-curl -X GET localhost:9000/store/products
-```
-
 <p align="center">
   <a href="https://www.medusa-commerce.com">
     <img alt="Medusa" src="https://i.imgur.com/USubGVY.png" width="100" />
   </a>
 </p>
 <h1 align="center">
-  Medusa Starter Default
+  Setup a complete Shopefree (Medusa Extension) environment
 </h1>
 <p align="center">
-This repo provides the skeleton to get you started with using <a href="https://github.com/medusajs/medusa">Medusa</a>. Follow the steps below to get ready.
+This repo provides the skeleton to get you started with using <a href="https://github.com/medusajs/medusa">Medusa</a> extension for a shopify marketplace. Follow the steps below to get ready and have a complete environment running.
 </p>
 <p align="center">
   <a href="https://github.com/medusajs/medusa/blob/master/LICENSE">
@@ -63,23 +35,41 @@ This starter has minimal prerequisites and most of these will usually already be
 
 - [Install Node.js](https://nodejs.org/en/download/)
 - [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Install SQLite](https://www.sqlite.org/download.html)
+- [Install docker](http://docker.io)
 
 ## Setting up your store
+This repo provides a docker compose file to initialize a local database a redis cache and a pgadmin containers to ease development.
 
 - Install the Medusa CLI
   ```
   npm install -g @medusajs/medusa
   yarn global add @medusajs/medusa
   ```
-- Create a new Medusa project
+ - Setup environment variables
   ```
-  medusa new my-medusa-store
+  cp .env.template .env
   ```
-- Run your project
+ - Set the following variables into .env file
   ```
-  cd my-medusa-store
+  DATABASE_URL="postgres://postgres:postgres@localhost/medusa-store" 
+  REDIS_URL="redis://localhost:6379"
+  ```
+ - Run docker compose to setup database dependencies
+  ```
+  docker compose up -d postgres redis pgadmin
+  ```
+ - Run medusa migrations. Make sure medusa-cli is installed (see medusa cli documentation for instructions). Make sure DATABASE_URL and REDIS_URL is set in you shell
+  ```
+  export DATABASE_URL=...
+  export REDIS_URL=...
+  medusa migrations run
+  medusa seed -f ./data/seed.json
+  ```
+- Run your project. Environment is set. You can now develop and test code running 
+  ```
+  cd shop-efree-backend
   medusa develop
+  curl -X GET localhost:9000/store/products
   ```
 
 Your local Medusa server is now running on port **9000**.
