@@ -107,7 +107,7 @@ This command seeds your database with some sample data to get you started, inclu
   npm install -g @medusajs/medusa-cli
   ```
 
-- Ensure to have a medusa server running (Running on docker) (In case you want medusa running on a container rather than from you local shell. If you followed previous setps and have a medusa server running already ignore this step)
+- Ensure to have a medusa server running (In case you want medusa running on a container rather than from you local shell. If you followed previous setps and have a medusa server running already ignore this step)
 
   When running your project the first time `docker compose` should be run with the `build` flag to build your container locally:
 
