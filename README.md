@@ -58,7 +58,7 @@ This repo provides a docker compose file to initialize a local database a redis 
   ```
   docker compose up -d postgres redis pgadmin
   ```
- - Run medusa migrations. Make sure medusa-cli is installed (see medusa cli documentation for instructions). Make sure DATABASE_URL and REDIS_URL is set in you shell
+ - Run medusa migrations. Make sure medusa-cli is installed (see medusa cli documentation for instructions). Make sure DATABASE_URL and REDIS_URL is set in you shell.
   ```
   export DATABASE_URL=...
   export REDIS_URL=...
@@ -88,7 +88,7 @@ This command seeds your database with some sample data to get you started, inclu
 
 ## Seting up datasources
 - Update project config in `medusa-config.js`:
-
+  Ideally no changes needed to this file for setting a development environment
   ```
   module.exports = {
     projectConfig: {
@@ -107,7 +107,7 @@ This command seeds your database with some sample data to get you started, inclu
   npm install -g @medusajs/medusa-cli
   ```
 
-- Run your project
+- Ensure to have a medusa server running (Running on docker) (In case you want medusa running on a container rather than from you local shell. If you followed previous setps and have a medusa server running already ignore this step)
 
   When running your project the first time `docker compose` should be run with the `build` flag to build your container locally:
 
@@ -118,15 +118,17 @@ This command seeds your database with some sample data to get you started, inclu
   When running your project subsequent times you can run docker compose with no flags to spin up your local environment in seconds:
 
   ```
-  docker-compose up
+  docker-compose up backend
   ```
 
 Your local Medusa server is now running on port **9000**.
+To setup a local development environment without docker see "Setting up your store" section
  
  - Spin on an admin and stoprefront samples for your server
- ```
- docker compose up admin storefront
- ```
+  ```
+  docker run -it -p 8000:8000 ginolocoop/medusa-storefront:local
+  docker run -it -p 7000:7000 ginolocoop/medusa-admin:local
+  ```
 
 ### Seeding your Medusa store with Docker
 
