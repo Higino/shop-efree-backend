@@ -37,7 +37,7 @@ This starter has minimal prerequisites and most of these will usually already be
 - [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Install docker](http://docker.io)
 
-## Setting up your store
+## Setting up your local development of medusa
 This repo provides a docker compose file to initialize a local database a redis cache and a pgadmin containers to ease development.
 
 - Install the Medusa CLI
@@ -101,10 +101,10 @@ This command seeds your database with some sample data to get you started, inclu
     plugins,
   };
   ```
-## Setting up your store with an admin and storefront samples
-- Install the Medusa CLI
+## Setting up your local environemnt with an admin and storefront samples
+- Ensure to checkout submodules
   ```
-  npm install -g @medusajs/medusa-cli
+  git submodule update --init --recursive
   ```
 
 - Ensure to have a medusa server running (In case you want medusa running on a container rather than from you local shell. If you followed previous setps and have a medusa server running already ignore this step)
@@ -123,13 +123,14 @@ This command seeds your database with some sample data to get you started, inclu
 
 Your local Medusa server is now running on port **9000**.
 To setup a local development environment without docker see "Setting up your store" section
- 
- - Spin on an admin and stoprefront samples for your server
-  ```
-  docker run -it -p 8000:8000 ginolocoop/medusa-storefront:local
-  docker run -it -p 7000:7000 ginolocoop/medusa-admin:local
-  ```
 
+- Seed your environment
+  ```
+  docker exec shopefree-backend medusa seed -f ./data/seed.json
+  ```
+ 
+- Admin is now ready on localhost:7000 and storefront on localhost:8000
+ 
 ### Seeding your Medusa store with Docker
 
 ---
@@ -137,7 +138,7 @@ To setup a local development environment without docker see "Setting up your sto
 To add seed data to your medusa store running with Docker, run this command in a seperate terminal:
 
 ```
-docker exec medusa-server medusa seed -f ./data/seed.json
+docker exec medusa-server-container-name medusa seed -f ./data/seed.json
 ```
 
 This will execute the previously described seed script in the running `medusa-server` Docker container.
