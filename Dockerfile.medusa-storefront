@@ -16,7 +16,7 @@ RUN npm install -g npm
 RUN npm install
 
 COPY ./medusa-storefront .
-RUN cp .env.template .env.local
+
 
 #RUN npm run build
 
