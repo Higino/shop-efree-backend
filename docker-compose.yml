@@ -1,5 +1,15 @@
 version: "3.8"
 services:
+  shopefree-storefront:
+    build: 
+      context: .
+      dockerfile: Dockerfile.medusa-storefront
+    image: shopefree-storefront:starter
+    container_name: shopefree-storefront
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"
   shopefree-admin:
     build: 
       context: .
