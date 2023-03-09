@@ -1,10 +1,22 @@
 version: "3.8"
 services:
+  shopefree-admin:
+    build: 
+      context: .
+      dockerfile: Dockerfile.medusa-admin
+    image: shopefree-admin:starter
+    container_name: shopefree-admin
+    depends_on:
+      - backend
+    ports:
+      - "7000:7000"
+
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.backend
     image: backend:starter
+    container_name: shopefree-backend
     depends_on:
       redis:
         condition: service_healthy
@@ -27,6 +39,7 @@ services:
     image: postgres:10.4
     ports:
       - "5432:5432"
+    container_name: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -38,6 +51,7 @@ services:
 
   redis:
     image: redis
+    container_name: redis
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping"]
       interval: 5s
@@ -49,6 +63,7 @@ services:
   
   pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
