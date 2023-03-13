@@ -5,3 +5,11 @@
 [submodule "medusa-storefront"]
 	path = medusa-storefront
 	url = https://github.com/medusajs/nextjs-starter-medusa.git
+
+[submodule "medusa-storefront-gatsby"]
+	path = medusa-storefront-gatsby
+	url = https://github.com/medusajs/gatsby-starter-medusa
+
+[submodule "gatsby-starter-medusa"]
+	path = gatsby-starter-medusa
+	url = https://github.com/medusajs/gatsby-starter-medusa
