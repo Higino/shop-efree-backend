@@ -1,3 +1,0 @@
-[submodule "medusa-admin"]
-	path = medusa-admin
-	url = https://github.com/medusajs/admin.git

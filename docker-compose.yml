@@ -1,35 +1,35 @@
 version: "3.8"
 services:
-  shopefree-storefront:
-    build: 
-      context: .
-      dockerfile: Dockerfile.medusa-storefront
-    image: shopefree-storefront:starter
-    container_name: shopefree-storefront
-    environment:
-      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
-      - NEXT_PUBLIC_STRIPE_KEY=
-      - NEXT_PUBLIC_PAYPAL_CLIENT_ID=
-      - NEXT_PUBLIC_SEARCH_APP_ID=
-      - NEXT_PUBLIC_SEARCH_ENDPOINT=http://127.0.0.1:7700
-      - NEXT_PUBLIC_SEARCH_API_KEY=
-      - NEXT_PUBLIC_SEARCH_INDEX_NAME=products=value
-    depends_on:
-      - backend
-    ports:
-      - "8000:8000"
-  shopefree-admin:
-    build: 
-      context: .
-      dockerfile: Dockerfile.medusa-admin
-    image: shopefree-admin:starter
-    container_name: shopefree-admin
-    environment:
-      - MEDUSA_BACKEND_URL=http://localhost:9000
-    depends_on:
-      - backend
-    ports:
-      - "7000:7000"
+  # shopefree-storefront:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.medusa-storefront
+  #   image: shopefree-storefront:starter
+  #   container_name: shopefree-storefront
+  #   environment:
+  #     - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+  #     - NEXT_PUBLIC_STRIPE_KEY=
+  #     - NEXT_PUBLIC_PAYPAL_CLIENT_ID=
+  #     - NEXT_PUBLIC_SEARCH_APP_ID=
+  #     - NEXT_PUBLIC_SEARCH_ENDPOINT=http://127.0.0.1:7700
+  #     - NEXT_PUBLIC_SEARCH_API_KEY=
+  #     - NEXT_PUBLIC_SEARCH_INDEX_NAME=products=value
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - "8000:8000"
+  # shopefree-admin:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.medusa-admin
+  #   image: shopefree-admin:starter
+  #   container_name: shopefree-admin
+  #   environment:
+  #     - MEDUSA_BACKEND_URL=http://localhost:9000
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - "7000:7000"
 
   shopefree-backend:
     build:
