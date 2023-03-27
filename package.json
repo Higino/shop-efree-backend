@@ -8,7 +8,7 @@
     "seed": "medusa seed -f ./data/seed.json",
     "build": "babel src -d dist --extensions \".ts,.js\"",
     "start": "medusa develop",
-    "serve": "medusa start",
+    "serve": "medusa start -p ${PORT:9000}",
     "heroku-postbuild": "medusa migrations run",
     "prepare": "npm run build"
   },
